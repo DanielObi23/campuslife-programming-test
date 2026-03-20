@@ -20,11 +20,11 @@ If you are struggling to get the application running, please get in contact with
 You can do research first before starting the test so that you have the full 3 hours to complete it.
 
 ### How to run / Install?
-Follow: https://laravel.com/docs/12.x/installation#installing-php
+Follow: [https://laravel.com/docs/12.x/installation#installing-php]()
 This will install **PHP**, **Composer**
 
 You will then need to install **Node** & **NPM**
-Follow: https://nodejs.org/en
+Follow: [https://nodejs.org/en]()
 
 Once you have installed the above you are able to continue to run the application.
 ```
@@ -38,6 +38,9 @@ Add the environment variables to the **.env** file. (If the file does not exist 
 API_ENDPOINT=<REPLACE_WITH_THE_ONE_FROM_EMAIL>
 API_TOKEN=<REPLACE_WITH_THE_ONE_FROM_EMAIL>
 ```
+
+### Engage API Documentation
+- [https://engage.browzer.co.uk/docs/api/v1/public]()
 
 ### Requirements
 - Build a class which interacts with the Browzer API — you can use `app/Utility/BrowzerAPI.php` as a starting point if you would like.
@@ -69,4 +72,4 @@ API_TOKEN=<REPLACE_WITH_THE_ONE_FROM_EMAIL>
 
 Any issues please get in contact with [technical@campuslife.co.uk]()
 
-Reference: https://laravel.com/docs/12.x/installation
+Reference: [https://laravel.com/docs/12.x/installation]()
