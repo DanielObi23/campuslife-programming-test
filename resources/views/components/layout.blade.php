@@ -1,10 +1,12 @@
+@props(['apiData', 'title'])
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ __('Welcome') }} - {{ config('app.name', 'Laravel') }}</title>
+        <title>{{ __('Browzer') }} - {{ config('app.name', 'Laravel') }}</title>
 
         <link rel="icon" href="/favicon.ico" sizes="any">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -23,34 +25,43 @@
             </style>
         @endif
     </head>
-    <body class="bg-stone-800 flex flex-col gap-2 items-center h-screen w-screen p-6">
-        <img 
-            src={{$organisation['logo']['image']['url']}} 
-            width={{$organisation['logo']['image']['width']}} 
-            height={{$organisation['logo']['image']['height']}}
-            class="my-auto"
-            />
+    <body class="bg-stone-800">
+        <h1 class="text-center text-4xl font-bold my-4 text-stone-100">{{$title}}</h1>
+        <div class="flex gap-5 p-4 w-full flex-wrap justify-around">
+            @foreach ($apiData['data'] as $data)
+                <div class='flex p-3 gap-2 bg-stone-300 rounded-2xl shadow-2xl shadow-black'>
+                    <img 
+                        src={{$data['header']['image']['url']}} 
+                        alt="Description image"
+                        width={{$data['header']['image']['width']/5}} 
+                        height={{$data['header']['image']['height']/5}}
+                        />
 
-        <div class="my-auto space-y-6">
-            <h1 class="uppercase text-6xl text-stone-100 text-shadow-lg text-shadow-stone-900">
-                welcome to {{$organisation['name']}}
-            </h1>
-            <div class="flex justify-between text-2xl text-stone-400">
-                <a href="/stories" 
-                    class="flex items-center gap-2 hover:text-stone-200 transition-colors ease-in-out group">
-                    <i data-lucide="step-back" class="group-hover:-translate-x-3 duration-400 transition-all ease-in-out"></i> Stories
-                </a> 
+                    <div class="flex flex-col justify-between w-65">
+                        <div class="space-y-1">
+                            <div class="flex justify-between gap-2 mt-1">
+                                <h2 class="text-xl font-semibold text-stone-900">{{ $data['title'] }}</h2> 
+                                <a href={{$data['url']}} target="_blank">
+                                    <i data-lucide="external-link"></i>
+                                </a>
+                            </div>
 
-                <a href="/events" 
-                    class="flex items-center gap-2 hover:text-stone-200 transition-colors ease-in-out group">
-                    Events <i data-lucide="step-forward" class="group-hover:translate-x-3 duration-400 transition-all ease-in-out"></i>
-                </a>
-            </div>
+                            <p class="text-pretty text-stone-800">{{$data['headline']}}</p>
+                        </div>
+                                            
+                        @if ($data['billboard']['show_category'])
+                            <div class="flex justify-between">
+                                <p class="text-stone-800">
+                                    <span class="text-stone-900 font-semibold">Category:</span> {{$data['category']['name']}}
+                                </p>
+                                <a href={{$data['category']['url']}} target="_blank">
+                                    <i data-lucide="external-link"></i>
+                                </a>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            @endforeach
         </div>
-       
-
-        @if (Route::has('login'))
-            <div class="h-14.5 hidden lg:block"></div>
-        @endif
     </body>
 </html>

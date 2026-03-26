@@ -2,7 +2,7 @@
 
 namespace App\Utility;
 
-// For documentation on the Browzer Engage API see more here: https://engage.browzer.co.uk/docs/api/v1/public
+use Illuminate\Support\Facades\Http;
 
 class BrowzerAPI
 {
@@ -11,8 +11,28 @@ class BrowzerAPI
         return config('app.api_endpoint');
     }
 
-    public function callAPI()
+    public function callAPI($endpoint)
     {
-        // Handle calling Browzer API here.
+        return Http::withoutVerifying() // SSL error on my windows pc
+            ->withHeaders([
+                'API-Token' => config('app.api_token')
+            ])
+            ->get($this->getURL() . $endpoint)
+            ->json();
+    }
+
+    public function getStories()
+    {
+        return $this->callAPI('/stories');
+    }
+
+    public function getEvents()
+    {
+        return $this->callAPI('/events');
+    }
+
+    public function getOrganisation()
+    {
+        return $this->callAPI('/organisation');
     }
 }

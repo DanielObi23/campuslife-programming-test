@@ -1,0 +1,1 @@
+<x-layout :apiData="$stories" title="Stories" />

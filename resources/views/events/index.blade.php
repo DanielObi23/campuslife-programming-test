@@ -1,0 +1,1 @@
+<x-layout :apiData="$events" title="Events" />
