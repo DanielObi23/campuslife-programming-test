@@ -26,10 +26,23 @@
         @endif
     </head>
     <body class="bg-stone-800">
-        <h1 class="text-center text-4xl font-bold my-4 text-stone-100">{{$title}}</h1>
+        <div class="flex p-3 items-center justify-center">
+            <h1 class="m-auto text-center text-4xl font-bold my-4 text-stone-100">{{$title}}</h1>
+            <div class="bg-stone-300 flex items-center py-1 px-2 rounded-xl">
+                <i data-lucide="search"></i>
+                <input
+                    type="text"
+                    placeholder="Search events..."
+                    id="searchInput"
+                    class="border-none focus:outline-0 rounded px-3 py-2"
+                />
+            </div>
+        </div>
+        
+        
         <div class="flex gap-5 p-4 w-full flex-wrap justify-around">
             @foreach ($apiData['data'] as $data)
-                <div class='flex p-3 gap-2 bg-stone-300 rounded-2xl shadow-2xl shadow-black'>
+                <div class='flex p-3 card gap-2 bg-stone-300 rounded-2xl shadow-2xl shadow-black'>
                     <img 
                         src={{$data['header']['image']['url']}} 
                         alt="Description image"
@@ -40,7 +53,7 @@
                     <div class="flex flex-col justify-between w-65">
                         <div class="space-y-1">
                             <div class="flex justify-between gap-2 mt-1">
-                                <h2 class="text-xl font-semibold text-stone-900">{{ $data['title'] }}</h2> 
+                                <h2 class="text-xl font-semibold text-stone-900 text-pretty">{{ $data['title'] }}</h2> 
                                 <a href={{$data['url']}} target="_blank">
                                     <i data-lucide="external-link"></i>
                                 </a>
@@ -50,7 +63,7 @@
                         </div>
                                             
                         @if ($data['billboard']['show_category'])
-                            <div class="flex justify-between">
+                            <div class="flex justify-between text-pretty">
                                 <p class="text-stone-800">
                                     <span class="text-stone-900 font-semibold">Category:</span> {{$data['category']['name']}}
                                 </p>
